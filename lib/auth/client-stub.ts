@@ -15,4 +15,6 @@ export const signOut: AuthClient["signOut"] = () => {}
 export const updateProfile: AuthClient["updateProfile"] = async () => notInstalled()
 export const changeEmail: AuthClient["changeEmail"] = async () => notInstalled()
 export const changePassword: AuthClient["changePassword"] = async () => notInstalled()
+export const requestPasswordReset: AuthClient["requestPasswordReset"] = async () => notInstalled()
+export const resetPassword: AuthClient["resetPassword"] = async () => notInstalled()
 export const deleteAccount: AuthClient["deleteAccount"] = async () => notInstalled()

@@ -28,6 +28,15 @@ export interface ChangePasswordInput {
   newPassword: string
 }
 
+export interface RequestPasswordResetInput {
+  email: string
+}
+
+export interface ResetPasswordInput {
+  token: string
+  newPassword: string
+}
+
 export interface AuthClient {
   useSession(): AuthSession
   signInSocial(provider: SocialProvider): Promise<unknown>
@@ -37,5 +46,7 @@ export interface AuthClient {
   updateProfile(input: UpdateProfileInput): Promise<void>
   changeEmail(input: ChangeEmailInput): Promise<void>
   changePassword(input: ChangePasswordInput): Promise<void>
+  requestPasswordReset(input: RequestPasswordResetInput): Promise<void>
+  resetPassword(input: ResetPasswordInput): Promise<void>
   deleteAccount(): Promise<void>
 }

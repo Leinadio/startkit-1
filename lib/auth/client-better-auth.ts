@@ -54,6 +54,16 @@ export const changePassword: AuthClient["changePassword"] = async ({ currentPass
   if (error) throw new Error(error.message ?? "Changement de mot de passe impossible")
 }
 
+export const requestPasswordReset: AuthClient["requestPasswordReset"] = async ({ email }) => {
+  const { error } = await authClient.requestPasswordReset({ email, redirectTo: "/reset-password" })
+  if (error) throw new Error(error.message ?? "Envoi du lien impossible")
+}
+
+export const resetPassword: AuthClient["resetPassword"] = async ({ token, newPassword }) => {
+  const { error } = await authClient.resetPassword({ token, newPassword })
+  if (error) throw new Error(error.message ?? "Réinitialisation impossible")
+}
+
 export const deleteAccount: AuthClient["deleteAccount"] = async () => {
   const { error } = await authClient.deleteUser()
   if (error) throw new Error(error.message ?? "Suppression du compte impossible")
