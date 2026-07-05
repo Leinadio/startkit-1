@@ -1,5 +1,5 @@
 "use client"
-import type { AuthClient } from "@/lib/auth/types"
+import type { AuthClient } from "@/lib/auth/client-type"
 
 const notInstalled = () => {
   throw new Error("Aucun module d'authentification installé")

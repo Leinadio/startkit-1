@@ -1,11 +1,9 @@
 "use client"
 import { createAuthClient } from "better-auth/react"
-import type { AuthClient } from "@/lib/auth/types"
+import type { AuthClient } from "@/lib/auth/client-type"
 
 const authClient = createAuthClient()
 
-// Adapter : on traduit NOTRE contrat vers la forme de better-auth, et on
-// normalise les erreurs en exceptions pour que l'UI ait un seul chemin d'erreur.
 export const useSession: AuthClient["useSession"] = () => {
   const session = authClient.useSession()
   return {

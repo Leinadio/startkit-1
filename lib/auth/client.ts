@@ -1,4 +1,2 @@
 "use client"
-// @prise:auth-client start
-export * from "./client-stub"
-// @prise:auth-client end
+export * from "./client-better-auth"

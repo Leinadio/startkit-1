@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth"
 import { prismaAdapter } from "better-auth/adapters/prisma"
-import { prisma } from "@/lib/database/client-supabase"
-import type { AuthAdapter } from "@/lib/adapters/types"
+import { prisma } from "@/lib/database/server-supabase"
+import type { AuthAdapter } from "./server-type"
 import { headers } from "next/headers"
 
 export const auth = betterAuth({
@@ -23,7 +23,7 @@ export const auth = betterAuth({
   },
 })
 
-export const betterAuthAdapter: AuthAdapter = {
+export const authAdapter: AuthAdapter = {
   async getSession() {
     const result = await auth.api.getSession({ headers: await headers() })
     if (!result?.session) return null
