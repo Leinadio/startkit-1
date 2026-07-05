@@ -49,6 +49,9 @@ export default function LoginPage() {
               {loading ? "Connexion…" : "Se connecter"}
             </Button>
           </form>
+          <p className="text-center text-sm text-muted-foreground">
+            <a className="underline" href="/forgot-password">Mot de passe oublié ?</a>
+          </p>
           <Button variant="outline" className="w-full" onClick={() => signInSocial("google")}>
             Continuer avec Google
           </Button>
