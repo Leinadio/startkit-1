@@ -5,8 +5,13 @@ import { findPlan } from "@/lib/payment/plans"
 export async function POST(req: Request) {
   const session = await authAdapter.getSession()
   if (!session) return new Response("Non autorisé", { status: 401 })
-  const { planId } = await req.json()
-  const plan = findPlan(planId)
+  let planId: string | undefined
+  try {
+    ;({ planId } = await req.json())
+  } catch {
+    return new Response("Requête invalide", { status: 400 })
+  }
+  const plan = planId ? findPlan(planId) : undefined
   if (!plan) return new Response("Offre inconnue", { status: 400 })
   const { url } = await paymentAdapter.createCheckout({
     userId: session.userId,

@@ -5,6 +5,7 @@ export async function POST(req: Request) {
     await paymentAdapter.handleWebhook(req)
     return Response.json({ received: true })
   } catch (err) {
-    return new Response(err instanceof Error ? err.message : "Erreur webhook", { status: 400 })
+    console.error("Erreur webhook Stripe :", err)
+    return new Response("Webhook rejeté", { status: 400 })
   }
 }

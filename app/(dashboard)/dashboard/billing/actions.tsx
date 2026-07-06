@@ -29,6 +29,10 @@ export function BillingActions({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body ?? {}),
     })
+    if (!res.ok) {
+      setMessage("Une erreur est survenue. Merci de réessayer.")
+      return
+    }
     const { url } = await res.json()
     window.location.href = url
   }
