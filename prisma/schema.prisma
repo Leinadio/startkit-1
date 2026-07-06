@@ -12,10 +12,12 @@ model User {
   email         String
   emailVerified Boolean   @default(false)
   image         String?
+  stripeCustomerId String? @unique
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  subscription  Subscription?
 
   @@unique([email])
   @@map("user")
@@ -67,4 +69,16 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Subscription {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  stripeSubscriptionId String   @unique
+  status               String
+  priceId              String
+  currentPeriodEnd     DateTime
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscription")
 }
