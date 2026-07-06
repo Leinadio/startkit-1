@@ -66,3 +66,14 @@ import { authAdapter } from "@/lib/auth/server-better-auth"
 1. Créer `lib/<module>/server-<fournisseur>.ts` qui implémente le contrat de `server-type.ts` et exporte le nom canonique, par exemple `authAdapter`.
 2. Faire pointer le bloc `@prise` de `lib/<module>/server.ts` vers ce fichier.
 3. Faire de même côté client si le module a une partie navigateur.
+
+## Prise payment (Stripe)
+
+Le module payment utilise Stripe pour gérer les abonnements.
+
+Variables d'environnement requises :
+- STRIPE_SECRET_KEY : la clé secrète de votre compte Stripe.
+- STRIPE_WEBHOOK_SECRET : le secret du webhook fourni par Stripe.
+- STRIPE_PRICE_PRO : l'ID du prix Pro dans votre compte Stripe.
+
+URL du webhook : /api/payment/webhook. Doit être enregistrée dans votre dashboard Stripe.
