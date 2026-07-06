@@ -3,7 +3,7 @@ import { prisma } from "@/lib/database/server-supabase"
 import { emailAdapter } from "@/lib/email/server"
 import type { PaymentAdapter } from "./server-type"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2026-06-24.dahlia" })
 const baseUrl = process.env.BETTER_AUTH_URL!
 
 async function upsertSubscription(userId: string, sub: Stripe.Subscription) {
